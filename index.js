@@ -25,7 +25,7 @@ async function run() {
     const commentId = core.getInput('COMMENT_IDENTIFIER');
     const githubToken =core.getInput('GITHUB_TOKEN');
 
-    const pr_number = ctx.payload.pull_request;
+    const pr_number = ctx.payload.pull_request.number;
     const { owner, repo } = ctx.repo;
 
     if (!pr_number) {
