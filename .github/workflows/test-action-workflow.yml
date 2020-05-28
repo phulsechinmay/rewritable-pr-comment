@@ -12,7 +12,8 @@ jobs:
       uses: actions/checkout@v2
     - uses: ./
       with:
-        message: "Testing action"
+        message: |
+          Testing workflow commenting
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         COMMENT_IDENTIFIER: "test-action-ci-rewritable-comment"
 
