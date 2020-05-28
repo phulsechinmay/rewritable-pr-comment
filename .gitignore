@@ -85,6 +85,5 @@ typings/
 .dynamodb/
 
 # custom
-dist
 .DS_Store
 ignore/
