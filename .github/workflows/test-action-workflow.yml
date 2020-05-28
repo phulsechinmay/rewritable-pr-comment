@@ -1,0 +1,16 @@
+name: Test Action CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./
+      with:
+        message: "Testing action"
+        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        COMMENT_IDENTIFIER: ${{ test-action-ci-rewritable-comment }}
+
