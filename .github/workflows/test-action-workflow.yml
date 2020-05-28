@@ -12,5 +12,5 @@ jobs:
       with:
         message: "Testing action"
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        COMMENT_IDENTIFIER: ${{ test-action-ci-rewritable-comment }}
+        COMMENT_IDENTIFIER: "test-action-ci-rewritable-comment"
 
