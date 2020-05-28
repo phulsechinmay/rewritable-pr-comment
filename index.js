@@ -1,6 +1,22 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 
+async function checkForExisiingComment(octokit, repo, owner, issue_number, commentIdentifier) {
+  const existingComments = await octokit.issues.listComments({
+    repo,
+    owner,
+    issue_number
+  });
+
+  let existingCommentId = undefined;
+  if (Array.isArray(existingComments.data))
+    existingComments.data.forEach(({ body, id }) => {
+      if (body.includes(commentIdentifier))
+        existingCommentId = id;
+    })
+  return existingCommentId;
+}
+
 async function run() {
   try {
     const ctx = github.context;
@@ -18,23 +34,13 @@ async function run() {
     }
 
     const octokit = new github.GitHub(githubToken);
-    const existingComments = await octokit.issues.listComments({
-      repo,
-      owner,
-      issue_number: pr_number
-    });
 
-    // Suffix 
+    // Suffix comment with hidden value to check for updating later.
     const commentIdSuffix = `\n\n\n<hidden purpose="for-rewritable-pr-comment-action-use" value="${commentId}"></hidden>`;
 
     // If comment already exists, get the comment ID.
-    let existingCommentId = undefined;
-    if (Array.isArray(existingComments.data))
-      existingComments.data.forEach(({ body, id }) => {
-        if (body.includes(commentIdSuffix))
-          existingCommentId = id;
-      })
-    
+    const existingCommentId = await checkForExisiingComment(octokit, repo, owner, pr_number, commentIdSuffix)
+
     const commentBody = commentMessage + commentIdSuffix;
     let comment = undefined;
     if (existingCommentId) {
@@ -53,7 +59,7 @@ async function run() {
       });
     }
 
-    console.log(comment);
+    core.setOutput("comment-id",comment.data.id);
 
   } catch (e) {
     core.setFailed(e.message);
