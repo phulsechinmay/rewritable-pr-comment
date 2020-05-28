@@ -3,9 +3,7 @@ const github = require("@actions/github");
 
 async function checkForExisiingComment(octokit, repo, owner, issue_number, commentIdentifier) {
   const existingComments = await octokit.issues.listComments({
-    repo,
-    owner,
-    issue_number
+    repo, owner, issue_number
   });
 
   let existingCommentId = undefined;
@@ -45,15 +43,13 @@ async function run() {
     let comment = undefined;
     if (existingCommentId) {
       comment = await octokit.issues.updateComment({
-        repo,
-        owner,
+        repo, owner,
         comment_id: existingCommentId,
         body: commentBody
       })
     } else {
       comment = await octokit.issues.createComment({
-        repo,
-        owner,
+        repo, owner,
         issue_number: pr_number,
         body: commentBody
       });
