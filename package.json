@@ -1,0 +1,14 @@
+{
+  "name": "rewritable-pr-comment",
+  "version": "1.0.0",
+  "description": "Github Action that posts a PR comment that re-writes itself on update",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "phulsechinmay",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.4"
+  }
+}

@@ -1,0 +1,22 @@
+name: 'Rewritable Pull Request Comment'
+branding:
+  icon: 'message-circle'  
+  color: 'red'
+description: 'Posts a PR comment that re-writes itself on an update'
+inputs: 
+  GITHUB_TOKEN:
+    description: 'Github token of the repository (automatically created by Github)'
+    required: true
+  COMMENT_IDENTIFIER:
+    description: 'A unique identifier for the re-writable comment (can be the purpose of the comment)'
+    required: true
+  message:
+    description: 'Message that should be printed in the pull request'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.COMMENT_IDENTIFIER }}
+    - ${{ inputs.message }}
