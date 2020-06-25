@@ -15,5 +15,4 @@ jobs:
         message: |
           Testing workflow commenting
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        COMMENT_IDENTIFIER: "test-action-ci-rewritable-comment"
 
