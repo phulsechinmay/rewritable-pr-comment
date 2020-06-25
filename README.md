@@ -33,5 +33,5 @@ jobs:
 | --------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------- | -------- |
 | message               | with     | The message you'd like to be displayed, supports Markdown, HTML and Unicode                                      | yes      |
 | GITHUB_TOKEN            | with     | A valid GitHub token, either the temporary token GitHub provides or a personal access token                                 | yes    |
-| COMMENT_IDENTIFIER | with     | This will be used to identify the comment that is to be overwritten. You could put some random strings here or just describe what the comment will contain. Check usage for example. | yes       |
+| COMMENT_IDENTIFIER | with     | This will be used to identify the comment that is to be overwritten. You could put some random strings here or just describe what the comment will contain. Check usage for example. | kinda? (Only needed when using the bot for multiple PR workflows.)        |
 
