@@ -5,7 +5,7 @@ async function checkForExisiingComment(octokit, repo, owner, issue_number, comme
   const existingComments = await octokit.issues.listComments({
     repo,
     owner,
-    issue_number
+    issue_number,
   });
 
   let existingCommentId = undefined;
