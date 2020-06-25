@@ -1,5 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
+const DEFAULT_COMMENT_IDENTIFIER = "4YE2JbpAewMX4rxmRnWyoSXoAfaiZH19QDB2IR3OSJTxmjSu"
 
 async function checkForExisiingComment(octokit, repo, owner, issue_number, commentIdentifier) {
   const existingComments = await octokit.issues.listComments({
@@ -20,7 +21,7 @@ async function run() {
     const ctx = github.context;
 
     const commentMessage = core.getInput('message');
-    const commentId = core.getInput('COMMENT_IDENTIFIER');
+    const commentId = core.getInput('COMMENT_IDENTIFIER') ? core.getInput('COMMENT_IDENTIFIER') : DEFAULT_COMMENT_IDENTIFIER;
     const githubToken =core.getInput('GITHUB_TOKEN');
 
     const pr_number = ctx.payload.pull_request.number;

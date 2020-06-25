@@ -9,7 +9,6 @@ inputs:
     required: true
   COMMENT_IDENTIFIER:
     description: 'A unique identifier for the re-writable comment (can be the purpose of the comment)'
-    required: true
   message:
     description: 'Message that should be printed in the pull request'
     required: true
