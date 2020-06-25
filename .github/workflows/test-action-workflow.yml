@@ -13,6 +13,7 @@ jobs:
     - uses: ./
       with:
         message: |
-          Testing workflow commenting
+          New comment
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        COMMENT_IDENTIFIER: "test-action-ci-rewritable-comment"
 
