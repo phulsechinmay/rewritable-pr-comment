@@ -4,7 +4,7 @@ Github Action that posts a PR comment that re-writes itself on update
 
 ## Inspiration
 
-Are you tired of the same test output bot commenting on your pull request after every commit, ruining the look and number of comment on your PR? Well, you've come to the right place. The inspiration behind this action comes from a similar frustration. This action will leave a custom comment on your PR and will update *just that comment* on a new commit, rather than create a new one.
+Are you tired of the same test output bot commenting on your pull request after every commit, ruining the look and number of comments on your PR? Well, you've come to the right place. The inspiration behind this action comes from a similar frustration. This action will leave a custom comment on your PR and will update *just that comment* on a new commit, rather than create a new one.
 
 ## Usage
 
