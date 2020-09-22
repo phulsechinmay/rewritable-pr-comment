@@ -9,6 +9,8 @@ inputs:
     required: true
   COMMENT_IDENTIFIER:
     description: 'A unique identifier for the re-writable comment (can be the purpose of the comment)'
+  PR_NUMBER:
+    description: 'The PR identifier that the comment should be made on. Defaults to the PR that the workflow is running on'
   message:
     description: 'Message that should be printed in the pull request'
     required: true
