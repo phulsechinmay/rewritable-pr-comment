@@ -1,16 +1,16 @@
-name: 'Rewritable Pull Request Comment'
+name: 'Rewritable Pull Request / Issue Comment'
 branding:
   icon: 'message-circle'  
   color: 'red'
-description: 'Posts a PR comment that re-writes itself on an update'
+description: 'Posts a PR / issue comment that re-writes itself on an update'
 inputs: 
   GITHUB_TOKEN:
     description: 'Github token of the repository (automatically created by Github)'
     required: true
   COMMENT_IDENTIFIER:
     description: 'A unique identifier for the re-writable comment (can be the purpose of the comment)'
-  PR_NUMBER:
-    description: 'The PR identifier that the comment should be made on. Defaults to the PR that the workflow is running on'
+  ISSUE_ID:
+    description: 'The identifier for a PR / issue that the comment should be made on. Defaults to the PR that the workflow is running on'
   message:
     description: 'Message that should be printed in the pull request'
     required: true

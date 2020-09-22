@@ -15,5 +15,5 @@ jobs:
         message: |
           Testing workflow commenting: PR override
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        PR_NUMBER: 5
-
+        ISSUE_ID: 5
+   

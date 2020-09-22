@@ -1,6 +1,6 @@
 # rewritable-pr-comment
 
-Github Action that posts a PR comment that re-writes itself on update
+Github Action that posts a PR / issue comment that re-writes itself on update
 
 ## Inspiration
 
@@ -23,8 +23,6 @@ jobs:
         message: ${{ steps.ci-tests.output.message }} # Print the output message from a step that tests something
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         COMMENT_IDENTIFIER: "test-output-comment-rewritable-action" # Put some identifier here that will be unique among comments in the PR
-
-
 ```
 
 ## Configuration options
@@ -34,5 +32,5 @@ jobs:
 | message               | with     | The message to be displayed in the comment, supports Markdown, HTML and Unicode.                                      | yes      |
 | GITHUB_TOKEN            | with     | A valid GitHub token, either the temporary token GitHub provides or a personal access token.                                | yes    |
 | COMMENT_IDENTIFIER | with     | This will be used to identify the comment that is to be overwritten. You could put some random strings here or just describe what the comment will contain. Check usage for example. | no (Only needed when using the bot for multiple PR workflows).        |
-| PR_NUMBER | with     | Identifier for the PR the comment should be made on. Defaults to the PR the workflow / action is running on.  | no        |
+| ISSUE_ID | with     | Identifier for the PR / issue the comment should be made on. Defaults to the PR the workflow / action is running on.  | no        |
 

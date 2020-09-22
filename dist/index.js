@@ -781,12 +781,10 @@ async function run() {
     const commentId = core.getInput('COMMENT_IDENTIFIER') ? core.getInput('COMMENT_IDENTIFIER') : DEFAULT_COMMENT_IDENTIFIER;
     const githubToken =core.getInput('GITHUB_TOKEN');
 
-    const pr_number = core.getInput('PR_NUMBER') ? core.getInput('PR_NUMBER') : ctx.payload.pull_request.number;
+    const issue_id = core.getInput('ISSUE_ID') ? core.getInput('ISSUE_ID') : ctx.payload.pull_request.number;
     const { owner, repo } = ctx.repo;
 
-    console.log(pr_number);
-
-    if (!pr_number) {
+    if (!issue_id) {
       core.setFailed("Action must run on a Pull Request.");
       return;
     }
@@ -797,7 +795,7 @@ async function run() {
     const commentIdSuffix = `\n\n\n<hidden purpose="for-rewritable-pr-comment-action-use" value="${commentId}"></hidden>`;
 
     // If comment already exists, get the comment ID.
-    const existingCommentId = await checkForExistingComment(octokit, repo, owner, pr_number, commentIdSuffix)
+    const existingCommentId = await checkForExistingComment(octokit, repo, owner, issue_id, commentIdSuffix)
 
     const commentBody = commentMessage + commentIdSuffix;
     let comment = undefined;
@@ -810,7 +808,7 @@ async function run() {
     } else {
       comment = await octokit.issues.createComment({
         repo, owner,
-        issue_number: pr_number,
+        issue_number: issue_id,
         body: commentBody
       });
     }
