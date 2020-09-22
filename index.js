@@ -27,6 +27,8 @@ async function run() {
     const pr_number = core.getInput('PR_NUMBER') ? core.getInput('COMMENT_IDENTIFIER') : ctx.payload.pull_request.number;
     const { owner, repo } = ctx.repo;
 
+    console.log(pr_number);
+
     if (!pr_number) {
       core.setFailed("Action must run on a Pull Request.");
       return;
