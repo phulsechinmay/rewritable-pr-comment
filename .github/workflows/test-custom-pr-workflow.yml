@@ -1,0 +1,19 @@
+name: Test Action CI - PR Override
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: ./
+      with:
+        message: |
+          Testing workflow commenting: PR override
+        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        PR_NUMBER: 5
+
