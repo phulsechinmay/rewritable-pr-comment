@@ -1,7 +1,7 @@
 {
   "name": "rewritable-pr-comment",
-  "version": "0.2.0",
-  "description": "Github Action that posts a PR comment that re-writes itself on update",
+  "version": "0.3.0",
+  "description": "Github Action that posts a PR / issue comment that re-writes itself on update",
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js -o dist"
