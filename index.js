@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const DEFAULT_COMMENT_IDENTIFIER = "4YE2JbpAewMX4rxmRnWyoSXoAfaiZH19QDB2IR3OSJTxmjSu"
 
-async function checkForExisiingComment(octokit, repo, owner, issue_number, commentIdentifier) {
+async function checkForExistingComment(octokit, repo, owner, issue_number, commentIdentifier) {
   const existingComments = await octokit.issues.listComments({
     repo, owner, issue_number
   });
@@ -24,7 +24,7 @@ async function run() {
     const commentId = core.getInput('COMMENT_IDENTIFIER') ? core.getInput('COMMENT_IDENTIFIER') : DEFAULT_COMMENT_IDENTIFIER;
     const githubToken =core.getInput('GITHUB_TOKEN');
 
-    const pr_number = ctx.payload.pull_request.number;
+    const pr_number = core.getInput('PR_NUMBER') ? core.getInput('COMMENT_IDENTIFIER') : ctx.payload.pull_request.number;
     const { owner, repo } = ctx.repo;
 
     if (!pr_number) {
@@ -38,7 +38,7 @@ async function run() {
     const commentIdSuffix = `\n\n\n<hidden purpose="for-rewritable-pr-comment-action-use" value="${commentId}"></hidden>`;
 
     // If comment already exists, get the comment ID.
-    const existingCommentId = await checkForExisiingComment(octokit, repo, owner, pr_number, commentIdSuffix)
+    const existingCommentId = await checkForExistingComment(octokit, repo, owner, pr_number, commentIdSuffix)
 
     const commentBody = commentMessage + commentIdSuffix;
     let comment = undefined;
