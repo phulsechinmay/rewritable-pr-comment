@@ -13,7 +13,7 @@ jobs:
     - uses: ./
       with:
         message: |
-          Testing workflow commenting: PR override
+          Testing workflow commenting: Issue ID Override
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         ISSUE_ID: 5
    
