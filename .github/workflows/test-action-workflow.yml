@@ -28,5 +28,6 @@ jobs:
       - uses: ./
         with:
           message: 'test message'
+          issue_number: 2
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
           COMMENT_IDENTIFIER: "test-output-comment-rewritable-action"
