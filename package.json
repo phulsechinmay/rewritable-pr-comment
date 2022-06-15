@@ -1,6 +1,6 @@
 {
   "name": "rewritable-pr-comment",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Github Action that posts a PR / issue comment that re-writes itself on update",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,10 @@
   "author": "phulsechinmay",
   "license": "ISC",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^2.2.0",
-    "@octokit/core": "^2.5.3",
-    "@octokit/rest": "^17.9.2",
+    "@actions/core": "^1.8.2",
+    "@actions/github": "^5.0.3",
+    "@octokit/core": "^3.6.0",
+    "@octokit/rest": "^18.12.0",
     "@zeit/ncc": "^0.22.3"
   }
 }

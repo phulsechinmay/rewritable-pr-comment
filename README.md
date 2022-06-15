@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # ... Steps that build / test / anything else that's needed
-    - uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+    - uses: phulsechinmay/rewritable-pr-comment@v0.3.1
       with:
         message: ${{ steps.ci-tests.output.message }} # Print the output message from a step that tests something
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}

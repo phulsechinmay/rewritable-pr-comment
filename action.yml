@@ -15,8 +15,8 @@ inputs:
     description: 'Message that should be printed in the pull request'
     required: true
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 outputs:
   comment-id:
-    description: 'The ID of the newly created / updated comment'
+    description: 'The ID of the newly created / updated comment
