@@ -2,6 +2,8 @@
 
 Github Action that posts a PR / issue comment that re-writes itself on update
 
+Updated fork of [phulsechinmay/rewritable-pr-comment](https://github.com/phulsechinmay/rewritable-pr-comment)
+
 ## Inspiration
 
 Are you tired of the same test output bot commenting on your pull request after every commit, ruining the look and the number of comments on your PR? Well, you've come to the right place. The inspiration behind this action comes from a similar frustration. This action will leave a custom comment on your PR and will update *just that comment* on an update, rather than create a new one.
@@ -18,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # ... Steps that build / test / anything else that's needed
-    - uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+    - uses: sammcj/rewritable-pr-comment@v0.3.2
       with:
         message: ${{ steps.ci-tests.output.message }} # Print the output message from a step that tests something
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}

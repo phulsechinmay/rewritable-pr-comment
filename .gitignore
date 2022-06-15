@@ -86,3 +86,7 @@ typings/
 
 # custom
 .DS_Store
+
+# vscode
+vscode/*
+.history/
