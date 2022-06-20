@@ -19,4 +19,4 @@ runs:
   main: 'dist/index.js'
 outputs:
   comment-id:
-    description: 'The ID of the newly created / updated comment
+    description: 'The ID of the newly created / updated comment'
