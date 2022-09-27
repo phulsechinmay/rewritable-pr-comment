@@ -12,15 +12,21 @@ permissions:
   pull-requests: write
   checks: write
 
+# One build per branch, cancel out of date builds
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   codeball-review:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     name: Run Codeball Code Review
     steps:
       - name: Codeball AI Actions
         uses: sturdy-dev/codeball-action@v2
         with:
-          approvePullRequests: "false"
-          labelPullRequestsWhenApproved: "true"
-          labelPullRequestsWhenReviewNeeded: "true"
-          failJobsWhenReviewNeeded: "false"
+          approvePullRequests: 'false'
+          labelPullRequestsWhenApproved: 'true'
+          labelPullRequestsWhenReviewNeeded: 'true'
+          failJobsWhenReviewNeeded: 'false'

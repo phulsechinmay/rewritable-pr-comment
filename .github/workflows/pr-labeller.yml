@@ -1,6 +1,6 @@
 #### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
-name: "Pull Request Labeller"
+name: 'Pull Request Labeller'
 on:
   pull_request:
     types:
@@ -29,8 +29,9 @@ permissions:
 
 jobs:
   pr-labeller:
-    name: "Pull Request Labeller"
+    name: 'Pull Request Labeller'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: fuxingloh/multi-labeler@v1
         id: pr-labeller
