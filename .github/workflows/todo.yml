@@ -18,7 +18,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     timeout-minutes: 30
     steps:
-      - uses: 'actions/checkout@v3'
+      - uses: 'actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b' # tag=v3
       - name: 'Check for TODOs and create or update issues'
-        uses: 'alstr/todo-to-issue-action@v4'
+        uses: 'alstr/todo-to-issue-action@fffb31f4fe645d6d79085a3ed46c1879c5543d08' # tag=v4
         id: 'todo'

@@ -24,9 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
       - name: markdownlint
-        uses: reviewdog/action-markdownlint@v0
+        uses: reviewdog/action-markdownlint@97e3df02fe1573d505a7b268046a44fa5409cbc3 # tag=v0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
