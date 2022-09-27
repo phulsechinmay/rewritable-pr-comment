@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: fuxingloh/multi-labeler@v1
+      - uses: fuxingloh/multi-labeler@12623606c1cb561e9fff26c8f275563a3a39ba8f # tag=v2
         id: pr-labeller
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

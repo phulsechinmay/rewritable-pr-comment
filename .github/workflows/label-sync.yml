@@ -22,8 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
-      - uses: EndBug/label-sync@v2
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - uses: EndBug/label-sync@2155ba23e047b09a88c8a2f577fa370307d171f4 # tag=v2
         with:
           delete-other-labels: true
           dry-run: false
