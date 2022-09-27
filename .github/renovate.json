@@ -1,44 +1,14 @@
 {
-  "extends": ["config:base"],
-  "commitMessagePrefix": "chore(renovate):",
+  "extends": ["github>sammcj/renovate-config"],
   "description": "This file is managed in template-repo",
-  "packageRules": [
-    {
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["major"],
-      "reviewersFromCodeOwners": true,
-      "addLabels": ["renovatebot", "major", "version-update"],
-      "commitMessagePrefix": "chore(renovate): major",
-      "groupName": "major"
-    },
-    {
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["minor"],
-      "reviewersFromCodeOwners": true,
-      "addLabels": ["renovatebot", "minor", "version-update"],
-      "commitMessagePrefix": "chore(renovate): minor",
-      "groupName": "minor"
-    },
-    {
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["patch"],
-      "reviewersFromCodeOwners": true,
-      "addLabels": ["renovatebot", "patch", "version-update"],
-      "commitMessagePrefix": "chore(renovate): patch",
-      "groupName": "patch"
-    },
-    {
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["pin", "digest"],
-      "reviewersFromCodeOwners": true,
-      "addLabels": ["renovatebot", "pin", "version-update"],
-      "commitMessagePrefix": "chore(renovate): pin",
-      "groupName": "pin"
-    }
-  ],
-  "vulnerabilityAlerts": {
-    "commitMessagePrefix": "chore(renovate): Security update",
-    "labels": ["security"]
-  },
-  "ignorePaths": ["files/**", "node_modules/**"]
+  "ignorePaths": [
+    ".github/workflows/codeball.yml",
+    ".github/workflows/label-sync.yml",
+    ".github/workflows/lint-pr-actions.yml",
+    ".github/workflows/lint-pr-actions-skip.yml",
+    ".github/workflows/lint-pr-markdown.yml",
+    ".github/workflows/pr-labeller.yml",
+    ".github/workflows/todo.yml",
+    ".github/workflows/mirror.yml"
+  ]
 }
