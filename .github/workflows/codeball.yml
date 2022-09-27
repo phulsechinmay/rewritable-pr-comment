@@ -4,6 +4,9 @@ name: Codeball
 
 on:
   pull_request:
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
 permissions:
@@ -19,14 +22,14 @@ concurrency:
 
 jobs:
   codeball-review:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 30
     name: Run Codeball Code Review
     steps:
       - name: Codeball AI Actions
         uses: sturdy-dev/codeball-action@v2
         with:
-          approvePullRequests: 'false'
-          labelPullRequestsWhenApproved: 'true'
-          labelPullRequestsWhenReviewNeeded: 'true'
-          failJobsWhenReviewNeeded: 'false'
+          approvePullRequests: "false"
+          labelPullRequestsWhenApproved: "true"
+          labelPullRequestsWhenReviewNeeded: "true"
+          failJobsWhenReviewNeeded: "false"

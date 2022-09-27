@@ -1,6 +1,6 @@
 #### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
-name: 'Lint Github Actions Workflows'
+name: "Lint Github Actions Workflows"
 on:
   pull_request:
     types:
@@ -9,9 +9,9 @@ on:
       - reopened
       - synchronize
     branches:
-      - 'main'
+      - "main"
     paths:
-      - '.github/**'
+      - ".github/**"
 
 permissions:
   contents: read
@@ -26,7 +26,7 @@ concurrency:
 jobs:
   lint-actions-workflows:
     name: Lint Actions Workflows
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
