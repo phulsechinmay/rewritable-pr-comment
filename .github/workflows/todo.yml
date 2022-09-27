@@ -1,8 +1,8 @@
 #### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
-name: 'Check for TODOs and create or update issues'
+name: "Check for TODOs and create or update issues"
 
-on: ['push']
+on: ["push"]
 
 permissions:
   issues: write
@@ -15,10 +15,10 @@ concurrency:
 
 jobs:
   todo-issues:
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-22.04"
     timeout-minutes: 30
     steps:
-      - uses: 'actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b' # tag=v3
-      - name: 'Check for TODOs and create or update issues'
-        uses: 'alstr/todo-to-issue-action@fffb31f4fe645d6d79085a3ed46c1879c5543d08' # tag=v4
-        id: 'todo'
+      - uses: "actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b" # tag=v3
+      - name: "Check for TODOs and create or update issues"
+        uses: "alstr/todo-to-issue-action@fffb31f4fe645d6d79085a3ed46c1879c5543d08" # tag=v4
+        id: "todo"
