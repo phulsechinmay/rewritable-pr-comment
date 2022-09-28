@@ -1,19 +1,13 @@
 #### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
-name: "Pull Request Labeller"
+name: "Lint CODEOWNERS"
 on:
   pull_request:
-    types:
-      - opened
-      - edited
-      - reopened
-      - synchronize
-      - ready_for_review
+    paths:
+      - "**/CODEOWNERS"
     branches:
       - main
       - master
-      - "!repo-sync/**"
-      - "!renovate/**"
 
 # One build per branch, cancel out of date builds
 concurrency:
@@ -29,13 +23,14 @@ permissions:
   security-events: read
 
 jobs:
-  pr-labeller:
-    name: "Pull Request Labeller"
+  lint-codeowners:
+    name: "Lint CODEOWNERS file"
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
-      - uses: fuxingloh/multi-labeler@12623606c1cb561e9fff26c8f275563a3a39ba8f # tag=v2
-        id: pr-labeller
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - uses: mszostok/codeowners-validator@7f3f5e28c6d7b8dfae5731e54ce2272ca384592f # tag=v0.7.4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: .github/config/labeller.yml
+          checks: "files,duppatterns,syntax"
+          experimental_checks: "avoid-shadowing"
+          github_access_token: "${{ secrets.GITHUB_TOKEN }}"

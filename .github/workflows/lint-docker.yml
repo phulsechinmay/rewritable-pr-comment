@@ -1,0 +1,28 @@
+#### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
+
+name: "Lint Docker"
+
+on:
+  pull_request:
+    paths:
+      - "**/Dockerfile.*"
+      - "**/docker-compose.*"
+  workflow_dispatch:
+
+jobs:
+  hadolint:
+    name: "Lint Docker with hadolint"
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - name: run tflint
+        uses: reviewdog/action-hadolint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: "false"
+          level: warning
+          filter_mode: "nofilter" # Optional. Check all files, not just the diff
+          # tflint_version: "v0.24.0" # Optional. Custom version, instead of latest
+          # tflint_rulesets: "azurerm google" # Optional. Extra official rulesets to install
+          # flags: "--module" # Optional. Add custom tflint flags

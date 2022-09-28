@@ -1,0 +1,34 @@
+#### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
+
+name: "Lint Shell Files"
+
+on:
+  pull_request:
+    paths:
+      - "**/*.sh"
+      - "**/*.rc"
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: lint-shell
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@66c9a47bf02255b250284a82251cb4cadf5043f5 # tag=v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          path: "."
+          pattern: |
+            *.sh
+            *.rc
+          exclude: |
+            ./.git/*
+            ./**/node_modules/*
+          check_all_files_with_shebangs: false
+          fail_on_error: false
+          level: warning
+          shellcheck_flags: "--external-sources"
