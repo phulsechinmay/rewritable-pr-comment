@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>sammcj/renovate-config"],
+  "description": "This file is managed in template-repo",
+  "assignees": ["sammcj"],
+  "ignorePaths": [
+    ".github/workflows/codeball.yml",
+    ".github/workflows/detect-secrets.yml",
+    ".github/workflows/label-sync.yml",
+    ".github/workflows/lint-docker.yml",
+    ".github/workflows/lint-pr-actions-skip.yml",
+    ".github/workflows/lint-pr-actions.yml",
+    ".github/workflows/lint-pr-markdown.yml",
+    ".github/workflows/lint-tf.yml",
+    ".github/workflows/mirror.yml",
+    ".github/workflows/pr-labeller.yml",
+    ".github/workflows/todo.yml"
+  ]
+}
