@@ -1,5 +1,5 @@
 #### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
 # Sam McLeod, Renovate Approval App
-* @sammcj
-app/renovate-approve
+action.yml @sammcj
+index.js @sammcj
