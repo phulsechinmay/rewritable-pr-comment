@@ -2,11 +2,11 @@ name: Test Action CI
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 # Don't run more than one build per branch
-concurrency: 
+concurrency:
   group: ${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
@@ -27,7 +27,7 @@ jobs:
           npm run build
       - uses: ./
         with:
-          message: 'test message'
+          message: "test message"
           issue_number: 2
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
           COMMENT_IDENTIFIER: "test-output-comment-rewritable-action"

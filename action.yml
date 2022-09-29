@@ -1,22 +1,26 @@
-name: 'Rewritable Pull Request / Issue Comment Action'
+name: "Rewritable Pull Request / Issue Comment Action"
 branding:
-  icon: 'message-circle'  
-  color: 'red'
-description: 'Posts a PR / issue comment that re-writes itself on an update'
-inputs: 
+  icon: "message-circle"
+  color: "red"
+
+description: "Posts a PR / issue comment that re-writes itself on an update"
+
+inputs:
   GITHUB_TOKEN:
-    description: 'Github token of the repository (automatically created by Github)'
+    description: "Github token of the repository (automatically created by Github)"
     required: true
   COMMENT_IDENTIFIER:
-    description: 'A unique identifier for the re-writable comment (can be the purpose of the comment)'
+    description: "A unique identifier for the re-writable comment (can be the purpose of the comment)"
   ISSUE_ID:
-    description: 'The identifier for a PR / issue that the comment should be made on. Defaults to the PR that the workflow is running on'
+    description: "The identifier for a PR / issue that the comment should be made on. Defaults to the PR that the workflow is running on"
   message:
-    description: 'Message that should be printed in the pull request'
+    description: "Message that should be printed in the pull request"
     required: true
+
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"
+
 outputs:
   comment-id:
-    description: 'The ID of the newly created / updated comment'
+    description: "The ID of the newly created / updated comment"

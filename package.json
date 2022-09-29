@@ -1,10 +1,18 @@
 {
   "name": "rewritable-pr-comment",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Github Action that posts a PR / issue comment that re-writes itself on update",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js -o dist"
+    "build": "ncc build index.js -o dist",
+    "test": "jest --passWithNoTests",
+    "lint": "prettier -w .; eslint --fix"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier -w",
+      "eslint --fix"
+    ]
   },
   "author": "sammcj",
   "license": "ISC",
