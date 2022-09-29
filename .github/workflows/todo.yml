@@ -3,6 +3,7 @@
 name: "Check for TODOs and create or update issues"
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 15 * * 6" # 15:00 UTC on Saturday = 01:00 AEST on Sunday
 

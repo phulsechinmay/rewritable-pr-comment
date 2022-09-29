@@ -44,15 +44,7 @@ labels:
       baseBranch: "(^docs\/.*)/i"
       commits: "(^docs:.*|(IF-[0-9]+ -- docs.*))/i"
       files:
-        any:
-          [
-            "**/docs/**",
-            "**/doc/**",
-            "**/*.md",
-            "**/*.markdown",
-            "**/*.rst",
-            "**/*.txt",
-          ]
+        any: ["**/docs/**", "**/doc/**", "**/*.md", "**/*.markdown", "**/*.rst", "**/*.txt"]
         count:
           gte: 1
           lte: 1000
@@ -140,15 +132,7 @@ labels:
       commits: "(^db:.*|.*sql|(IF-[0-9]+ -- db.*))/i"
       files:
         # regex glob to match a file with extension .sql in any directory recursively
-        any:
-          [
-            "**/*.sql",
-            "**/*.db",
-            "**/db/**",
-            "**/flyway.*",
-            "**/migrations/**",
-            "**/*.sqlite.*",
-          ]
+        any: ["**/*.sql", "**/*.db", "**/db/**", "**/flyway.*", "**/migrations/**", "**/*.sqlite.*"]
         count:
           gte: 1
           lte: 1000
@@ -183,7 +167,7 @@ labels:
     matcher:
       title: ".*git.*/i"
       files:
-        any: ["**/.git.*", "**/.husky/*"]
+        any: ["**/.git.*", "**/.husky/*", "**/.pre-commit-config.*"]
         count:
           gte: 1
           lte: 1000

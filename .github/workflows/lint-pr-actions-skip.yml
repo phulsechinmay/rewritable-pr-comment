@@ -15,7 +15,11 @@ on:
       - reopened
       - synchronize
     branches:
-      - "main"
+      - main
+      - master
+      - "!repo-sync/**"
+      - "!renovate/**"
+      - "!update/pre-commit-hooks/**"
     paths-ignore:
       - ".github/**"
 

@@ -9,6 +9,12 @@ on:
       - "**/*.tf.*"
       - "**/*.tfvars.*"
       - "**/*.terraform.*"
+    branches:
+      - main
+      - master
+      - "!repo-sync/**"
+      - "!renovate/**"
+      - "!update/pre-commit-hooks/**"
   workflow_dispatch:
 
 jobs:
@@ -22,7 +28,9 @@ jobs:
       # Note: Terraform is not needed for tflint
       - name: Install Terraform
         run: |
-          brew install terraform
+          curl -sSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get update && sudo apt-get install terraform -y
       # Run init to get module code to be able to use `--module`
       - name: Terraform init
         run: |

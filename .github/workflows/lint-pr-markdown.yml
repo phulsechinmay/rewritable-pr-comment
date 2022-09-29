@@ -8,6 +8,12 @@ on:
   pull_request:
     paths:
       - "**/*.md"
+    branches:
+      - main
+      - master
+      - "!repo-sync/**"
+      - "!renovate/**"
+      - "!update/pre-commit-hooks/**"
   workflow_dispatch:
 
 permissions:

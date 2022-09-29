@@ -7,6 +7,12 @@ on:
     paths:
       - "**/Dockerfile.*"
       - "**/docker-compose.*"
+    branches:
+      - main
+      - master
+      - "!repo-sync/**"
+      - "!renovate/**"
+      - "!update/pre-commit-hooks/**"
   workflow_dispatch:
 
 jobs:
