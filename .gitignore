@@ -23,9 +23,6 @@
 **/cdk.context.json
 **/cdk.out
 
-# NodeJS
-**/node_modules
-
 # Test and coverage output
 **/coverage/
 **/test-report.xml
