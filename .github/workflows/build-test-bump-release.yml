@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v3
         name: Set up Node.js
         with:
-          node-version: 16
+          node-version: ${{ .nvmrc }}
 
       # Build
       - name: "Install dependencies and build"
