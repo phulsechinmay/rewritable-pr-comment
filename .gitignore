@@ -4,7 +4,7 @@
 
 ### START GITHUB ACTIONS FILES ###
 
-!**/node_modules
+**/node_modules
 !**/dist
 
 ### END GITHUB ACTIONS FILES ###

@@ -1,0 +1,64 @@
+const core = require('@actions/core');
+const { GitHub } = require('@actions/github');
+const octokit = require('@octokit/rest');
+const { context } = require('@actions/github');
+const { jest: requiredJest } = require('@jest/globals');
+// import index.js
+const action = require('./index');
+
+// enable console logging
+jest.spyOn(console, 'log').mockImplementation();
+
+// TODO: these tests aren't working yet - fix them!
+
+// basic jest tests that run the action
+describe('action', () => {
+  it('should run the action', async () => {
+    // mock the core module
+    core.getInput = jest.fn().mockImplementation((name) => {
+      switch (name) {
+        case 'message':
+          return 'Hello World!';
+        case 'COMMENT_IDENTIFIER':
+          return
+        case 'GITHUB_TOKEN':
+          return
+        default:
+          return
+
+      }
+    });
+    core.setFailed = jest.fn();
+    core.setOutput = jest.fn();
+
+    // mock the github module
+
+    // set the GITHUB_REPOSITORY environment variable
+    repo = process.env.GITHUB_REPOSITORY
+
+    context.repo = {
+      repo: {
+        owner: 'owner',
+        repo: 'repo',
+      },
+      payload: {
+        pull_request: {
+          number: 'number',
+        },
+      },
+    };
+
+    // mock the octokit module
+    octokit.issues = {
+      createComment: jest.fn(),
+      updateComment: jest.fn(),
+    };
+
+    // run the action
+    await action.run();
+
+    // check that the action ran successfully
+    expect(core.setFailed).not.toHaveBeenCalled();
+  });
+});
+
