@@ -623,43 +623,37 @@ exports.prepareKeyValueMessage = prepareKeyValueMessage;
 
 const core = __webpack_require__(470);
 const github = __webpack_require__(469);
+
 const DEFAULT_COMMENT_IDENTIFIER = '4YE2JbpAewMX4rxmRnWyoSXoAfaiZH19QDB2IR3OSJTxmjSu';
 
-async function checkForExistingComment(octokit, repo, owner, issue_number, commentIdentifier) {
-  const existingComments = await octokit.issues.listComments({
+async function checkForExistingComment(octokit, repo, owner, issueNumber, commentIdentifier) {
+  const { data: existingComments } = await octokit.issues.listComments({
     repo,
     owner,
-    issue_number,
+    issue_number: issueNumber,
   });
 
-  let existingCommentId = undefined;
-  if (Array.isArray(existingComments.data)) {
-    existingComments.data.forEach(({ body, id }) => {
-      if (body.includes(commentIdentifier)) existingCommentId = id;
-    });
-  }
+  let existingCommentId;
+  existingComments.forEach(({ body, id }) => {
+    if (body.includes(commentIdentifier)) existingCommentId = id;
+  });
+
   return existingCommentId;
 }
 
 async function run() {
   try {
-    const ctx = github.context;
+    const { repo, payload } = github.context;
+    const { owner, number: issueNumber } = payload.pull_request;
 
-    const commentMessage = core.getInput('message');
-    const commentId = core.getInput('COMMENT_IDENTIFIER')
-      ? core.getInput('COMMENT_IDENTIFIER')
-      : DEFAULT_COMMENT_IDENTIFIER;
-    const githubToken = core.getInput('GITHUB_TOKEN');
-
-    const issue_id = core.getInput('ISSUE_ID')
-      ? core.getInput('ISSUE_ID')
-      : ctx.payload.pull_request.number;
-    const { owner, repo } = ctx.repo;
-
-    if (!issue_id) {
+    if (!issueNumber) {
       core.setFailed('Action must run on a Pull Request.');
       return;
     }
+
+    const commentMessage = core.getInput('message');
+    const commentId = core.getInput('COMMENT_IDENTIFIER', { default: DEFAULT_COMMENT_IDENTIFIER });
+    const githubToken = core.getInput('GITHUB_TOKEN');
 
     const octokit = new github.GitHub(githubToken);
 
@@ -671,12 +665,12 @@ async function run() {
       octokit,
       repo,
       owner,
-      issue_id,
+      issueNumber,
       commentIdSuffix,
     );
 
-    const commentBody = commentMessage + commentIdSuffix;
-    let comment = undefined;
+    const commentBody = `${commentMessage}${commentIdSuffix}`;
+    let comment;
     if (existingCommentId) {
       comment = await octokit.issues.updateComment({
         repo,
@@ -688,7 +682,7 @@ async function run() {
       comment = await octokit.issues.createComment({
         repo,
         owner,
-        issue_number: issue_id,
+        issue_number: issueNumber,
         body: commentBody,
       });
     }
