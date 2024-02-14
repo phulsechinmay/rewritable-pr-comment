@@ -3,7 +3,7 @@ const github = require("@actions/github");
 const DEFAULT_COMMENT_IDENTIFIER = "4YE2JbpAewMX4rxmRnWyoSXoAfaiZH19QDB2IR3OSJTxmjSu"
 
 async function checkForExistingComment(octokit, repo, owner, issue_number, commentIdentifier) {
-  const existingComments = await octokit.issues.listComments({
+  const existingComments = await octokit.rest.issues.listComments({
     repo, owner, issue_number
   });
 
@@ -32,7 +32,7 @@ async function run() {
       return;
     }
 
-    const octokit = new github.GitHub(githubToken);
+    const octokit = github.getOctokit(token);
 
     // Suffix comment with hidden value to check for updating later.
     const commentIdSuffix = `\n\n\n<hidden purpose="for-rewritable-pr-comment-action-use" value="${commentId}"></hidden>`;
@@ -43,13 +43,13 @@ async function run() {
     const commentBody = commentMessage + commentIdSuffix;
     let comment = undefined;
     if (existingCommentId) {
-      comment = await octokit.issues.updateComment({
+      comment = await octokit.rest.issues.updateComment({
         repo, owner,
         comment_id: existingCommentId,
         body: commentBody
       })
     } else {
-      comment = await octokit.issues.createComment({
+      comment = await octokit.rest.issues.createComment({
         repo, owner,
         issue_number: issue_id,
         body: commentBody

@@ -1,9 +1,9 @@
 name: 'Rewritable Pull Request / Issue Comment'
 branding:
-  icon: 'message-circle'  
+  icon: 'message-circle'
   color: 'red'
 description: 'Posts a PR / issue comment that re-writes itself on an update'
-inputs: 
+inputs:
   GITHUB_TOKEN:
     description: 'Github token of the repository (automatically created by Github)'
     required: true
@@ -15,7 +15,7 @@ inputs:
     description: 'Message that should be printed in the pull request'
     required: true
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'
 outputs:
   comment-id:
