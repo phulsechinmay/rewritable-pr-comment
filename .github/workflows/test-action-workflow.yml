@@ -4,15 +4,19 @@ on:
   pull_request:
     branches: [ master ]
 
+# The action posts / updates PR comments, so it needs these write scopes.
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v7
     - uses: ./
       with:
         message: |
           Workflow test comment
-        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
-
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
