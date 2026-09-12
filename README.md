@@ -51,3 +51,18 @@ events and lets the action use the `ISSUE_ID` input on plain issues.)
 | GITHUB_TOKEN            | with     | A valid GitHub token, either the temporary token GitHub provides or a personal access token.                                | yes    |
 | COMMENT_IDENTIFIER | with     | This will be used to identify the comment that is to be overwritten. You could put some random strings here or just describe what the comment will contain. Check usage for example. | no (Only needed when using the bot for multiple PR workflows).        |
 | ISSUE_ID | with     | Identifier for the PR / issue the comment should be made on. Defaults to the PR the workflow / action is running on.  | no        |
+
+## Outputs
+
+| Output     | Description                                    |
+| ---------- | ---------------------------------------------- |
+| comment-id | The ID of the newly created / updated comment. |
+
+```yaml
+- uses: phulsechinmay/rewritable-pr-comment@v0.4.0
+  id: pr-comment
+  with:
+    message: "Hello!"
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+- run: echo "Comment ID is ${{ steps.pr-comment.outputs.comment-id }}"
+```
