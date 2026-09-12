@@ -19,4 +19,4 @@ jobs:
       with:
         message: |
           Workflow test comment
-        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
