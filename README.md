@@ -43,6 +43,8 @@ permissions:
 what grants comment permissions on the PR; `issues: write` covers `issues`
 events and lets the action use the `ISSUE_ID` input on plain issues.)
 
+Without this block the action's API calls fail with a 403 error.
+
 ## Configuration options
 
 | Variable or Argument  | Location | Description                                                                                                                 | Required |
