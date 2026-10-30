@@ -11,6 +11,9 @@ inputs:
     description: 'A unique identifier for the re-writable comment (can be the purpose of the comment)'
   ISSUE_ID:
     description: 'The identifier for a PR / issue that the comment should be made on. Defaults to the PR that the workflow is running on'
+  MODE:
+    description: 'How to deal with the comment already existing ("create" to leave it alone or "replace" to overwrite it). Defaults to "replace"'
+    default: 'replace'
   message:
     description: 'Message that should be printed in the pull request'
     required: true
