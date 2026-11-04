@@ -26,8 +26,12 @@ async function run() {
     const ctx = github.context;
 
     const commentMessage = core.getInput("message", { required: true });
-    const commentId = core.getInput("COMMENT_IDENTIFIER") || DEFAULT_COMMENT_IDENTIFIER;
+    const commentMarker = core.getInput("COMMENT_IDENTIFIER") || DEFAULT_COMMENT_IDENTIFIER;
     const githubToken = core.getInput("GITHUB_TOKEN", { required: true });
+    const mode = core.getInput("MODE");
+    if (!["create", "replace"].includes(mode)) {
+      throw new Error(`Invalid MODE ${JSON.stringify(mode)}`);
+    }
 
     // Resolution order: explicit ISSUE_ID input first, then the PR / issue
     // number from the event payload (covers pull_request, pull_request_target
@@ -51,30 +55,31 @@ async function run() {
     const octokit = github.getOctokit(githubToken);
 
     // Suffix comment with hidden value to check for updating later.
-    const commentIdSuffix = `\n\n\n<hidden purpose="for-rewritable-pr-comment-action-use" value="${commentId}"></hidden>`;
+    const commentIdSuffix = `\n\n\n<hidden purpose="for-rewritable-pr-comment-action-use" value="${commentMarker}"></hidden>`;
 
     // If comment already exists, get the comment ID.
     const existingCommentId = await findExistingComment(octokit, owner, repo, issue_number, commentIdSuffix);
 
     const commentBody = commentMessage + commentIdSuffix;
-    let comment;
-    if (existingCommentId) {
-      comment = await octokit.rest.issues.updateComment({
-        owner,
-        repo,
-        comment_id: existingCommentId,
-        body: commentBody,
-      });
-    } else {
-      comment = await octokit.rest.issues.createComment({
+    let commentId = existingCommentId;
+    if (!commentId) {
+      const comment = await octokit.rest.issues.createComment({
         owner,
         repo,
         issue_number,
         body: commentBody,
       });
+      commentId = comment.data.id;
+    } else if (mode === "replace") {
+      await octokit.rest.issues.updateComment({
+        owner,
+        repo,
+        comment_id: existingCommentId,
+        body: commentBody,
+      });
     }
 
-    core.setOutput("comment-id", comment.data.id);
+    core.setOutput("comment-id", commentId);
   } catch (e) {
     core.setFailed(e.message);
   }

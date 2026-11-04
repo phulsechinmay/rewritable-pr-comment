@@ -47,12 +47,13 @@ Without this block the action's API calls fail with a 403 error.
 
 ## Configuration options
 
-| Variable or Argument  | Location | Description                                                                                                                 | Required |
-| --------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------- | -------- |
-| message               | with     | The message to be displayed in the comment, supports Markdown, HTML and Unicode.                                      | yes      |
-| GITHUB_TOKEN            | with     | A valid GitHub token, either the temporary token GitHub provides or a personal access token.                                | yes    |
-| COMMENT_IDENTIFIER | with     | This will be used to identify the comment that is to be overwritten. You could put some random strings here or just describe what the comment will contain. Check usage for example. | no (Only needed when using the bot for multiple PR workflows).        |
-| ISSUE_ID | with     | Identifier for the PR / issue the comment should be made on. Defaults to the PR the workflow / action is running on.  | no        |
+| Variable or Argument | Location | Description                                                                                                                 | Required |
+| -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------- | -------- |
+| message              | with     | The message to be displayed in the comment, supports Markdown, HTML and Unicode.                                            | yes      |
+| GITHUB_TOKEN         | with     | A valid GitHub token, either the temporary token GitHub provides or a personal access token.                                | yes      |
+| COMMENT_IDENTIFIER   | with     | This will be used to identify the comment that is to be overwritten. You could put some random strings here or just describe what the comment will contain. Check usage for example. | no (Only needed when using the bot for multiple PR workflows). |
+| ISSUE_ID             | with     | Identifier for the PR / issue the comment should be made on. Defaults to the PR the workflow / action is running on.        | no       |
+| MODE                 | with     | How to deal with the comment already existing ("create" to leave it alone or "replace" to overwrite it). Defaults to "replace". | no   |
 
 ## Outputs
 
